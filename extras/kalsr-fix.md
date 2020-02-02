@@ -4,7 +4,7 @@ Last editied: January 13, 2020
 
 ## Fixing KALSR slide values
 
-This section is for users who wish to understand and fix "Couldn't allocate runtime area" errors. This is most common with either Z390, X99 and X299. This section will also support Clover as the info is also useful for them.
+This section is for users who wish to understand and fix "Couldn't allocate runtime area" errors. This is most common with 9th and 10th gen CPUs. This section will also support Clover as the info is also useful for them.
 
 ## So what is KASLR?
 
@@ -51,9 +51,7 @@ The real fix to this is quite simple actually, the process is both the same for 
     * AvoidRuntimeDefrag: `YES`
        * Fixes UEFI runtime services like date, time, NVRAM, etc
     * DevirtualiseMmio: `YES`
-       * Reduces stolen memory footprint so we're given more options for slide values, **do not use on AMD CPU based systems**
-    * DisableVariableWrite: `YES`
-       * Reroutes NVRAM to nvram.plist, needed for systems without supported NVRAM(B360, B365, H310, H370, Q370, Z390). Some C612, X79, X99, X299 systems will also need this.
+       * Reduces stolen memory footprint so we're given more options for slide values
     * EnableSafeModeSlide: `YES`
        * Allows us to use slide in safe mode, just so if you have other issues troubleshooting won't mess it up.
     * EnableWriteUnprotector: `YES`
@@ -69,7 +67,7 @@ The real fix to this is quite simple actually, the process is both the same for 
 
 The reason we need to reset the memory map is we want it to be more deterministic, what I mean by this is that there will be less variation on each boot so we have fewer edge cases(Memory Maps are not always consistent on boots). To prep:
 
-* Update BIOS(extremely important as early BIOS's shipped are known to have memory map issues, especially with Z390)
+* Update BIOS(extremely important as early BIOS's shipped are known to have memory map issues)
 * Clear CMOS
 * Enable much needed BIOS settings:
   * `Above4GDecoding`: This allows devices to use memory regions above 4GB meaning macOS will have more room to fit, can be problematic on some X99, X299 so recommended to test with and without.

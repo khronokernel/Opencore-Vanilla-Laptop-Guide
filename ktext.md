@@ -117,12 +117,7 @@ So you see all those SSDTs in the AcpiSamples folder and wonder whether you need
 * [Broadwell](/config.plist/broadwell.md)
 * [Skylake](/config.plist/skylake.md)
 * [Kaby Lake](/config.plist/kaby-lake.md)
-* [Coffee Lake](/config.plist/coffee-lake.md)
+* [Coffee Lake(8th Gen)](/config.plist/coffee-lake-8th-gen.md)
+* [Coffee Lake(9th Gen)](/config.plist/coffee-lake-9th-gen.md)
+* [Comet Lake](/config.plist/comet-lake.md)
 
-**Intel HEDT Config.plist**
-
-* [Skylake-X](/config-HEDT/skylake-x.md)
-
-**AMD Config.plist**
-
-* [AMD](/AMD/AMD-config.md)

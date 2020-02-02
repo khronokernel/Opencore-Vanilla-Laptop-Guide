@@ -31,11 +31,9 @@
 ## Extras
 
 * [Legacy Install](extras/legacy.md)
-* [GPU Patching](extras/gpu-patches.md)
 * [Getting started with ACPI](extras/acpi.md)
 * [Fixing Resolution and Verbose](troubleshooting/verbose.md)
 * [Fixing KALSR slide values](extras/kalsr-fix.md)
-* [Fixing CFG Lock](extras/msr-lock.md)
 * [Fixing iServices](/post-install/iservices.md)
 
 ## Misc
