@@ -375,20 +375,7 @@
             
         </li>
     
-        <li class="chapter " data-level="5.2" data-path="../extras/gpu-patches.html">
-            
-                <a href="../extras/gpu-patches.html">
-            
-                    
-                    GPU Patching
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3" data-path="../extras/acpi.html">
+        <li class="chapter " data-level="5.2" data-path="../extras/acpi.html">
             
                 <a href="../extras/acpi.html">
             
@@ -401,7 +388,7 @@
             
         </li>
     
-        <li class="chapter " data-level="5.4" data-path="../troubleshooting/verbose.html">
+        <li class="chapter " data-level="5.3" data-path="../troubleshooting/verbose.html">
             
                 <a href="../troubleshooting/verbose.html">
             
@@ -414,7 +401,7 @@
             
         </li>
     
-        <li class="chapter " data-level="5.5" data-path="../extras/kalsr-fix.html">
+        <li class="chapter " data-level="5.4" data-path="../extras/kalsr-fix.html">
             
                 <a href="../extras/kalsr-fix.html">
             
@@ -427,20 +414,7 @@
             
         </li>
     
-        <li class="chapter " data-level="5.6" data-path="../extras/msr-lock.html">
-            
-                <a href="../extras/msr-lock.html">
-            
-                    
-                    Fixing CFG Lock
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.7" data-path="../post-install/iservices.html">
+        <li class="chapter " data-level="5.5" data-path="../post-install/iservices.html">
             
                 <a href="../post-install/iservices.html">
             
@@ -572,30 +546,86 @@
 <p>This section allows us to dynamically modify parts of the ACPI (DSDT, SSDT, etc.) via OpenCore. For us, we&apos;ll need a couple:</p>
 <ul>
 <li>EC Rename<ul>
-<li>Needed for Catalina support as it doesn&apos;t like the standard one found on most PCs, follow the <a href="">Fixing Embedded Controllers Guide</a> on how to determine what EC you have and apply the appropriate patches</li>
+<li>Needed for Catalina support as it doesn&apos;t like the standard one found on most PCs, follow the <a href="https://khronokernel.github.io/EC-fix-guide/" target="_blank">Fixing Embedded Controllers Guide</a> on how to determine what EC you have and apply the appropriate patches</li>
 </ul>
 </li>
-<li><p>OSI rename</p>
-<ul>
-<li><p>This is required when using SSDT-XOSI as we redirect all OSI calls to this SSDT</p>
-<p>| Comment | String | Change XXXX to EC |
-| :--- | :--- | :--- |
-| Enabled | String | YES |
-| Count | Number | 0 |
-| Limit | Nuber | 0 |
-| Find | Data | xxxxxxxx |
-| Replace | Data | 45435f5f |</p>
-<p>| Comment | String | Change _OSI to XOSI |
-| :--- | :--- | :--- |
-| Enabled | String | YES |
-| Count | Number | 0 |
-| Limit | Nuber | 0 |
-| Find | Data | 5f4f5349 |
-| Replace | Data | 584f5349 |</p>
-</li>
+<li>OSI rename<ul>
+<li>This is required when using SSDT-XOSI as we redirect all OSI calls to this SSDT</li>
 </ul>
 </li>
 </ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Comment</th>
+<th style="text-align:left">String</th>
+<th style="text-align:left">Change XXXX to EC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Enabled</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">YES</td>
+</tr>
+<tr>
+<td style="text-align:left">Count</td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:left">Limit</td>
+<td style="text-align:left">Nuber</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:left">Find</td>
+<td style="text-align:left">Data</td>
+<td style="text-align:left">xxxxxxxx</td>
+</tr>
+<tr>
+<td style="text-align:left">Replace</td>
+<td style="text-align:left">Data</td>
+<td style="text-align:left">45435f5f</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Comment</th>
+<th style="text-align:left">String</th>
+<th style="text-align:left">Change _OSI to XOSI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Enabled</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">YES</td>
+</tr>
+<tr>
+<td style="text-align:left">Count</td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:left">Limit</td>
+<td style="text-align:left">Nuber</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:left">Find</td>
+<td style="text-align:left">Data</td>
+<td style="text-align:left">5f4f5349</td>
+</tr>
+<tr>
+<td style="text-align:left">Replace</td>
+<td style="text-align:left">Data</td>
+<td style="text-align:left">584f5349</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Quirk</strong>: Settings for ACPI.</p>
 <ul>
 <li><strong>FadtEnableReset</strong>: NO<ul>
@@ -1224,7 +1254,7 @@ SmUUID:       AA043F8D-33B6-4A1A-94F7-46972AAD0607
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Ivy Bridge","level":"2.1","depth":1,"next":{"title":"Haswell","level":"2.2","depth":1,"path":"config.plist/haswell.md","ref":"config.plist/haswell.md","articles":[]},"previous":{"title":"Gathering files","level":"1.3","depth":1,"path":"ktext.md","ref":"ktext.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","favicon-plus"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"output":"_book","addcssjs":{"css":[],"js":[]},"fontsettings":{"theme":"night","family":"sans","size":2},"favicon-plus":{"appleTouchIconPrecomposed152":"","favicon":"","output":"_book"},"highlight":{},"favicon":"/icons/favicon.ico","appleTouchIconPrecomposed152":"/icons/appleTouchIconPrecomposed152.png","sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"search-plus":{}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"config.plist/ivy-bridge.md","mtime":"2020-02-02T04:52:58.520Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-02T04:53:45.235Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ivy Bridge","level":"2.1","depth":1,"next":{"title":"Haswell","level":"2.2","depth":1,"path":"config.plist/haswell.md","ref":"config.plist/haswell.md","articles":[]},"previous":{"title":"Gathering files","level":"1.3","depth":1,"path":"ktext.md","ref":"ktext.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","favicon-plus"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"output":"_book","addcssjs":{"css":[],"js":[]},"fontsettings":{"theme":"night","family":"sans","size":2},"favicon-plus":{"appleTouchIconPrecomposed152":"","favicon":"","output":"_book"},"highlight":{},"favicon":"/icons/favicon.ico","appleTouchIconPrecomposed152":"/icons/appleTouchIconPrecomposed152.png","sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"search-plus":{}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"config.plist/ivy-bridge.md","mtime":"2020-02-02T05:42:26.476Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-02T05:43:07.816Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
